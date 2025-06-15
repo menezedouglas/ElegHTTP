@@ -1,7 +1,13 @@
 {
-  "name": "services",
+  "name": "ohttp",
   "version": "1.0.0",
   "main": "index.js",
+  "description": "A TypeScript library for object-oriented HTTP communication",
+  "author": {
+    "name": "Douglas Menezes",
+    "email": "contato@douglasmenezes.dev.br",
+    "url": "douglasmenezes.dev.br"
+  },
   "license": "MIT",
   "private": false
 }
