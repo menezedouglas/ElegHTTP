@@ -1,0 +1,1 @@
+export { BaseErrorHandler } from '@/abstracts/baseerrorhandler'

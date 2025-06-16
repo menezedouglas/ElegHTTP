@@ -1,7 +1,7 @@
 {
   "name": "ohttp",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.8.0",
+  "main": "src/index.ts",
   "description": "A TypeScript library for object-oriented HTTP communication",
   "author": {
     "name": "Douglas Menezes",
@@ -9,5 +9,11 @@
     "url": "https://douglasmenezes.dev.br"
   },
   "license": "MIT",
-  "private": false
+  "private": false,
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/es6-promise": "^0.0.33"
+  }
 }
