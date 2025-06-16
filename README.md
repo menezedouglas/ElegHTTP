@@ -1,4 +1,4 @@
-# 🌐 ohttp
+# 🌐 ElegHTTP
 
 > Uma biblioteca de requisições HTTP orientada a objetos para TypeScript.  
 > Flexível, extensível e com suporte a interceptação, autenticação, monitoramento de download e muito mais.
