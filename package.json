@@ -1,5 +1,5 @@
 {
-  "name": "ohttp",
+  "name": "eleghttp",
   "version": "0.8.0",
   "main": "src/index.ts",
   "description": "A TypeScript library for object-oriented HTTP communication",
