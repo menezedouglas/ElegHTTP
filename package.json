@@ -16,8 +16,5 @@
   },
   "dependencies": {
     "@types/es6-promise": "^0.0.33"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
