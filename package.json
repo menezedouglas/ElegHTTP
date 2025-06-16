@@ -8,6 +8,7 @@
     "email": "contato@douglasmenezes.dev.br",
     "url": "https://douglasmenezes.dev.br"
   },
+  "repository": "https://github.com/menezedouglas/ElegHTTP.git",
   "license": "MIT",
   "private": false,
   "devDependencies": {
