@@ -8,9 +8,9 @@
 ## 📦 Instalação
 
 ```bash
-npm install ohttp
+npm install eleghttp
 # ou
-yarn add ohttp
+yarn add eleghttp
 ```
 
 ---
@@ -18,7 +18,7 @@ yarn add ohttp
 ## 🔧 Importação
 
 ```ts
-import { BaseApi, Methods, Abstracts, Contracts } from 'ohttp'
+import { BaseApi, Methods, Abstracts, Contracts } from 'eleghttp'
 ```
 
 ---
@@ -44,7 +44,7 @@ src/
 Crie uma classe para cada requisição estendendo `BaseApi` e passando o método HTTP desejado:
 
 ```ts
-import { BaseApi, Methods } from 'ohttp'
+import { BaseApi, Methods } from 'eleghttp'
 
 class GetUserApi extends BaseApi {
   constructor(userId: string) {
@@ -96,7 +96,7 @@ Você pode estender `BaseApi` e customizar:
 - Tratamento de erros com classes reutilizáveis
 
 ```ts
-import { BaseApi, Methods, Abstracts } from 'ohttp'
+import { BaseApi, Methods, Abstracts } from 'eleghttp'
 
 class DownloadFileApi extends BaseApi {
   constructor(fileId: string, token: string) {
