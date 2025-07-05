@@ -1,47 +1,24 @@
 import { IFetchMethod, IErrorHandler, IDownloadMonitor, IRequestHook } from "@/contracts"
 
 export abstract class BaseApi {
+  public headers: HeadersInit = {}
+  public fetchOptions: RequestInit = {}
+  public baseUrl: string = ''
   protected method!: IFetchMethod
-  protected headers: HeadersInit = {}
-  protected fetchOptions: RequestInit = {}
   protected hooks?: IRequestHook
   protected errorHandler?: IErrorHandler
   protected monitor?: IDownloadMonitor
-  protected baseUrl: string = ''
 
-  public setMethod(method: IFetchMethod): this {
-    this.method = method
-    return this
-  }
-
-  public setHeaders(headers: HeadersInit): this {
-    this.headers = headers
-    return this
-  }
-
-  public setOptions(options: RequestInit): this {
-    this.fetchOptions = options
-    return this
-  }
-
-  public setHooks(hooks: IRequestHook): this {
-    this.hooks = hooks
-    return this
-  }
-
-  public setMonitor(monitor: IDownloadMonitor): this {
-    this.monitor = monitor
-    return this
-  }
-
-  public setErrorHandler(handler: IErrorHandler): this {
-    this.errorHandler = handler
-    return this
-  }
-
-  public setBaseUrl(url: string): this {
-    this.baseUrl = url
-    return this
+  constructor(params: {
+    method: IFetchMethod,
+    hooks?: IRequestHook,
+    monitor?: IDownloadMonitor,
+    errorHandler?: IErrorHandler
+  }) {
+    this.method = params.method
+    this.hooks = params.hooks
+    this.monitor = params.monitor
+    this.errorHandler = params.errorHandler
   }
 
   protected async fetchWithProgress(url: string, options: RequestInit): Promise<Response> {
