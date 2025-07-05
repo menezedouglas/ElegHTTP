@@ -1,4 +1,4 @@
-import { IFetchMethod, IErrorHandler, IDownloadMonitor, IRequestHook } from "@/contracts"
+import { IFetchMethod, IErrorHandler, IDownloadMonitor, IRequestHook } from "../contracts"
 
 export abstract class BaseApi {
   public headers: HeadersInit = {}
