@@ -7,6 +7,7 @@ export abstract class BaseApi {
   protected hooks?: IRequestHook
   protected errorHandler?: IErrorHandler
   protected monitor?: IDownloadMonitor
+  protected baseUrl: string = ''
 
   public setMethod(method: IFetchMethod): this {
     this.method = method
@@ -38,6 +39,11 @@ export abstract class BaseApi {
     return this
   }
 
+  public setBaseUrl(url: string): this {
+    this.baseUrl = url
+    return this
+  }
+
   protected async fetchWithProgress(url: string, options: RequestInit): Promise<Response> {
     const response = await fetch(url, options)
 
@@ -63,10 +69,22 @@ export abstract class BaseApi {
     return new Response(stream, response)
   }
 
-  public async execute(): Promise<Response> {
+  protected buildUrl(path: string): string {
+    if (!this.baseUrl) return path
+    return this.baseUrl.replace(/\/$/, '') + '/' + path.replace(/^\//, '')
+  }
+
+  public async download(path: string, options: RequestInit = {}): Promise<Blob> {
+    const url = this.buildUrl(path)
+    const response = await this.fetchWithProgress(url, { ...options, headers: { ...this.headers, ...(options.headers || {}) } })
+    if (!response.ok) throw new Error(`Erro HTTP ${response.status}`)
+    return await response.blob()
+  }
+
+  public async execute(): Promise<any> {
     if (!this.method) throw new Error('Método HTTP não definido.')
 
-    const url = this.method.getUri()
+    const url = this.baseUrl ? this.buildUrl(this.method.getUri()) : this.method.getUri()
     const method = this.method.getMethod()
     const data = this.method.getData()
 
