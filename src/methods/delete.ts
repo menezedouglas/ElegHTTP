@@ -1,4 +1,4 @@
-import { IFetchMethod } from '../contracts/ifetchmethod'
+import type { IFetchMethod } from '../contracts/ifetchmethod'
 
 export class Delete implements IFetchMethod
 {
@@ -8,7 +8,7 @@ export class Delete implements IFetchMethod
 
     protected uri: string
 
-    constructor(uri: string, data?: object) {
+    constructor(uri: string, data?: object | undefined) {
         this.uri = uri
         this.data = data
     }

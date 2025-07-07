@@ -11,9 +11,9 @@ export abstract class BaseApi {
 
   constructor(params: {
     method: IFetchMethod,
-    hooks?: IRequestHook,
-    monitor?: IDownloadMonitor,
-    errorHandler?: IErrorHandler
+    hooks?: IRequestHook | undefined,
+    monitor?: IDownloadMonitor | undefined,
+    errorHandler?: IErrorHandler | undefined
   }) {
     this.method = params.method
     this.hooks = params.hooks

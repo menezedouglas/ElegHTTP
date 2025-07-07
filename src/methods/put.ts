@@ -1,4 +1,4 @@
-import { IFetchMethod } from '../contracts/ifetchmethod'
+import type { IFetchMethod } from '../contracts/ifetchmethod'
 
 export class Put implements IFetchMethod
 {

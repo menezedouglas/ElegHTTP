@@ -1,4 +1,4 @@
-export { IDownloadMonitor } from './idownloadmonitor'
-export { IErrorHandler } from './ierrorhandler'
-export { IFetchMethod } from './ifetchmethod'
-export { IRequestHook } from './irequesthook'
+export type { IDownloadMonitor } from './idownloadmonitor'
+export type { IErrorHandler } from './ierrorhandler'
+export type { IFetchMethod } from './ifetchmethod'
+export type { IRequestHook } from './irequesthook'
