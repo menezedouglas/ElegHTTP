@@ -4,11 +4,11 @@ export class Post implements IFetchMethod
 {
     protected method: string = 'POST'
 
-    protected data?: object
-
+    protected data?: object | undefined
+ 
     protected uri: string
 
-    constructor(uri: string, data?: object) {
+    constructor(uri: string, data?: object | undefined) {
         this.uri = uri
         this.data = data
     }

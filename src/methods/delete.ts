@@ -4,7 +4,7 @@ export class Delete implements IFetchMethod
 {
     protected method: string = 'DELETE'
 
-    protected data?: object
+    protected data?: object | undefined
 
     protected uri: string
 

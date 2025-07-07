@@ -5,9 +5,9 @@ export abstract class BaseApi {
   public fetchOptions: RequestInit = {}
   public baseUrl: string = ''
   protected method!: IFetchMethod
-  protected hooks?: IRequestHook
-  protected errorHandler?: IErrorHandler
-  protected monitor?: IDownloadMonitor
+  protected hooks?: IRequestHook | undefined
+  protected errorHandler?: IErrorHandler |undefined
+  protected monitor?: IDownloadMonitor | undefined
 
   constructor(params: {
     method: IFetchMethod,
