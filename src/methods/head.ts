@@ -1,4 +1,4 @@
-import { IFetchMethod } from '@/contracts/ifetchmethod'
+import { IFetchMethod } from '../contracts/ifetchmethod'
 
 export class Head implements IFetchMethod
 {
