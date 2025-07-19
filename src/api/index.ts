@@ -51,13 +51,13 @@ export abstract class BaseApi {
     return this.baseUrl.replace(/\/$/, '') + '/' + path.replace(/^\//, '')
   }
 
-  public async download(path: string, options: RequestInit = {}): Promise<Blob> {
+  public async download(path: string, options: RequestInit = {}): Promise<Blob|Response> {
     const url = this.buildUrl(path)
     try {
        const response = await this.fetchWithProgress(url, { ...options, headers: { ...this.headers, ...(options.headers || {}) } })
       if (!response.ok) {
         void this.errorHandler?.handleHttpError?.(response)
-        return await response.json()
+        return response
       }
       return await response.blob()
     } catch (error: Error | any) {
@@ -66,7 +66,7 @@ export abstract class BaseApi {
     }
   }
 
-  public async execute(): Promise<any> {
+  public async execute(): Promise<Response | JSON> {
     if (!this.method) throw new Error('HTTP method is not defined')
 
     const url = this.baseUrl ? this.buildUrl(this.method.getUri()) : this.method.getUri()
@@ -95,7 +95,7 @@ export abstract class BaseApi {
 
       if (!response.ok) {
         void this.errorHandler?.handleHttpError?.(response)
-        return await response.json()
+        return response
       }
 
       return await response.json()
