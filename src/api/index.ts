@@ -66,7 +66,7 @@ export abstract class BaseApi {
     }
   }
 
-  public async execute(): Promise<Response | JSON> {
+  public async execute(): Promise<Response> {
     if (!this.method) throw new Error('HTTP method is not defined')
 
     const url = this.baseUrl ? this.buildUrl(this.method.getUri()) : this.method.getUri()
@@ -98,7 +98,7 @@ export abstract class BaseApi {
         return response
       }
 
-      return await response.json()
+      return await response
     } catch (error: Error | any) {
       void this.errorHandler?.handleError?.(error)
       throw error
