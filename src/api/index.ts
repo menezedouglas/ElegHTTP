@@ -57,7 +57,7 @@ export abstract class BaseApi {
        const response = await this.fetchWithProgress(url, { ...options, headers: { ...this.headers, ...(options.headers || {}) } })
       if (!response.ok) {
         void this.errorHandler?.handleHttpError?.(response)
-        throw new Error(`Erro HTTP (${response.status}): ${response.statusText}`)
+        return await response.json()
       }
       return await response.blob()
     } catch (error: Error | any) {
@@ -95,10 +95,10 @@ export abstract class BaseApi {
 
       if (!response.ok) {
         void this.errorHandler?.handleHttpError?.(response)
-        throw new Error(`Erro HTTP (${response.status}): ${response.statusText}`)
+        return await response.json()
       }
 
-      return response.json()
+      return await response.json()
     } catch (error: Error | any) {
       void this.errorHandler?.handleError?.(error)
       throw error
