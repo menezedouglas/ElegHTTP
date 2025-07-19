@@ -1,3 +1,4 @@
 export interface IErrorHandler {
-  handleError(error: any): void
+  handleError(error: Error): Promise<void> | void;
+  handleHttpError(response: Response): Promise<void> | void;
 }

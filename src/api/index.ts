@@ -53,13 +53,21 @@ export abstract class BaseApi {
 
   public async download(path: string, options: RequestInit = {}): Promise<Blob> {
     const url = this.buildUrl(path)
-    const response = await this.fetchWithProgress(url, { ...options, headers: { ...this.headers, ...(options.headers || {}) } })
-    if (!response.ok) throw new Error(`Erro HTTP ${response.status}`)
-    return await response.blob()
+    try {
+       const response = await this.fetchWithProgress(url, { ...options, headers: { ...this.headers, ...(options.headers || {}) } })
+      if (!response.ok) {
+        void this.errorHandler?.handleHttpError?.(response)
+        throw new Error(`Erro HTTP (${response.status}): ${response.statusText}`)
+      }
+      return await response.blob()
+    } catch (error: Error | any) {
+      void this.errorHandler?.handleError?.(error)
+      throw error
+    }
   }
 
   public async execute(): Promise<any> {
-    if (!this.method) throw new Error('Método HTTP não definido.')
+    if (!this.method) throw new Error('HTTP method is not defined')
 
     const url = this.baseUrl ? this.buildUrl(this.method.getUri()) : this.method.getUri()
     const method = this.method.getMethod()
@@ -85,11 +93,14 @@ export abstract class BaseApi {
 
       await this.hooks?.afterRequest?.(response)
 
-      if (!response.ok) throw new Error(`Erro HTTP ${response.status}`)
+      if (!response.ok) {
+        void this.errorHandler?.handleHttpError?.(response)
+        throw new Error(`Erro HTTP (${response.status}): ${response.statusText}`)
+      }
 
       return response.json()
-    } catch (error) {
-      this.errorHandler?.handleError?.(error)
+    } catch (error: Error | any) {
+      void this.errorHandler?.handleError?.(error)
       throw error
     }
   }
