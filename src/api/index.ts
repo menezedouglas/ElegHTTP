@@ -1,7 +1,9 @@
 import { IFetchMethod, IErrorHandler, IDownloadMonitor, IRequestHook } from "../contracts"
 
 export abstract class BaseApi {
-  public headers: HeadersInit = {}
+  public headers: HeadersInit = {
+    'Content-Type': 'application/json'
+  }
   public fetchOptions: RequestInit = {}
   public baseUrl: string = ''
   protected method!: IFetchMethod
@@ -76,7 +78,6 @@ export abstract class BaseApi {
     const options: RequestInit = {
       method,
       headers: {
-        'Content-Type': 'application/json',
         ...this.headers,
       },
       ...this.fetchOptions,
