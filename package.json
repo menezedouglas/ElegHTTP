@@ -1,6 +1,6 @@
 {
   "name": "eleghttp",
-  "version": "0.11.5",
+  "version": "0.11.6",
   "main": "src/index.ts",
   "description": "A TypeScript library for object-oriented HTTP communication",
   "author": {

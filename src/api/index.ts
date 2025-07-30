@@ -84,7 +84,12 @@ export abstract class BaseApi {
     }
 
     if (data && ['POST', 'PUT', 'PATCH'].includes(method.toUpperCase())) {
-      options.body = JSON.stringify(data)
+      if (data instanceof FormData) {
+        delete (options.headers as any)['Content-Type']
+        options.body = data
+      } else {
+        options.body = JSON.stringify(data)
+      }
     }
 
     try {
